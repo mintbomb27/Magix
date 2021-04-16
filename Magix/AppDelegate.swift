@@ -6,15 +6,41 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+        //Fetching ClientID from GoogleServices-Info.plist
+        var clientID: [String:Any]?
+        if let gservicesPlistPath = Bundle.main.url(forResource: "GoogleService-Info", withExtension:"plist"){
+            do{
+                let gservicesPlist = try Data(contentsOf: gservicesPlistPath)
+                if let dict = try PropertyListSerialization.propertyList(from: gservicesPlist, options: [], format: nil) as? [String: Any]{
+                    clientID = dict
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
+        GIDSignIn.sharedInstance()?.clientID = clientID?["CLIENT_ID"] as? String
+        GIDSignIn.sharedInstance()?.delegate = self
+        
         return true
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("User Email: \(user.profile.email ?? "No Email") ")
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
     }
 
     // MARK: UISceneSession Lifecycle
