@@ -17,9 +17,11 @@
 		8C05AF1126289D59008963C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C05AF0F26289D59008963C2 /* LaunchScreen.storyboard */; };
 		8C05AF1C26289D59008963C2 /* MagixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C05AF1B26289D59008963C2 /* MagixTests.swift */; };
 		8C05AF2726289D59008963C2 /* MagixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C05AF2626289D59008963C2 /* MagixUITests.swift */; };
-		8C05AF3B2628A331008963C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C05AF3A2628A331008963C2 /* GoogleService-Info.plist */; };
 		8C05AF412628AC66008963C2 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8C05AF402628AC66008963C2 /* BebasNeue.otf */; };
 		8C78FB6E2629971200AA5843 /* EmailLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C78FB6D2629971200AA5843 /* EmailLoginController.swift */; };
+		8CC92680262A1370001B454A /* PhoneLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9267F262A1370001B454A /* PhoneLoginController.swift */; };
+		8CC92688262A9F85001B454A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC92687262A9F85001B454A /* GoogleService-Info.plist */; };
+		8CC92690262AEF27001B454A /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9268F262AEF27001B454A /* LaunchView.swift */; };
 		C018481351A080B4DB814B8E /* Pods_MagixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18058F9C00E89C8D4175874A /* Pods_MagixTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,10 +64,12 @@
 		8C05AF2226289D59008963C2 /* MagixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C05AF2626289D59008963C2 /* MagixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagixUITests.swift; sourceTree = "<group>"; };
 		8C05AF2826289D59008963C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C05AF3A2628A331008963C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8C05AF402628AC66008963C2 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeue.otf; sourceTree = "<group>"; };
 		8C78FB66262944D300AA5843 /* Magix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Magix.entitlements; sourceTree = "<group>"; };
 		8C78FB6D2629971200AA5843 /* EmailLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginController.swift; sourceTree = "<group>"; };
+		8CC9267F262A1370001B454A /* PhoneLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginController.swift; sourceTree = "<group>"; };
+		8CC92687262A9F85001B454A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CC9268F262AEF27001B454A /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		AB2210869A3F079FB6049169 /* Pods-MagixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagixTests.debug.xcconfig"; path = "Target Support Files/Pods-MagixTests/Pods-MagixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70E3D98583FD41AAC3A1605 /* Pods_Magix_MagixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magix_MagixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,8 +127,8 @@
 		8C05AF0326289D56008963C2 /* Magix */ = {
 			isa = PBXGroup;
 			children = (
+				8CC92687262A9F85001B454A /* GoogleService-Info.plist */,
 				8C78FB66262944D300AA5843 /* Magix.entitlements */,
-				8C05AF3A2628A331008963C2 /* GoogleService-Info.plist */,
 				8C05AF0426289D56008963C2 /* AppDelegate.swift */,
 				8C05AF0626289D56008963C2 /* SceneDelegate.swift */,
 				8C05AF0826289D56008963C2 /* ViewController.swift */,
@@ -134,6 +138,8 @@
 				8C05AF1226289D59008963C2 /* Info.plist */,
 				8C05AF402628AC66008963C2 /* BebasNeue.otf */,
 				8C78FB6D2629971200AA5843 /* EmailLoginController.swift */,
+				8CC9267F262A1370001B454A /* PhoneLoginController.swift */,
+				8CC9268F262AEF27001B454A /* LaunchView.swift */,
 			);
 			path = Magix;
 			sourceTree = "<group>";
@@ -290,8 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C05AF1126289D59008963C2 /* LaunchScreen.storyboard in Resources */,
-				8C05AF3B2628A331008963C2 /* GoogleService-Info.plist in Resources */,
 				8C05AF0E26289D59008963C2 /* Assets.xcassets in Resources */,
+				8CC92688262A9F85001B454A /* GoogleService-Info.plist in Resources */,
 				8C05AF412628AC66008963C2 /* BebasNeue.otf in Resources */,
 				8C05AF0C26289D57008963C2 /* Main.storyboard in Resources */,
 			);
@@ -456,9 +462,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C05AF0926289D56008963C2 /* ViewController.swift in Sources */,
+				8CC92690262AEF27001B454A /* LaunchView.swift in Sources */,
 				8C05AF0526289D56008963C2 /* AppDelegate.swift in Sources */,
 				8C78FB6E2629971200AA5843 /* EmailLoginController.swift in Sources */,
 				8C05AF0726289D56008963C2 /* SceneDelegate.swift in Sources */,
+				8CC92680262A1370001B454A /* PhoneLoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,15 +644,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Magix/Magix.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LYKFDFQQ2D;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F8CHS6PHQS;
 				INFOPLIST_FILE = Magix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nayso.Magix;
+				PRODUCT_BUNDLE_IDENTIFIER = ieee.apptask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Ieee app task";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,15 +667,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Magix/Magix.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LYKFDFQQ2D;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F8CHS6PHQS;
 				INFOPLIST_FILE = Magix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nayso.Magix;
+				PRODUCT_BUNDLE_IDENTIFIER = ieee.apptask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Ieee app task";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

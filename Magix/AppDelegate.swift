@@ -36,6 +36,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error{
+            print(error)
+            return
+        }
+        guard let authentication = user.authentication else {return}
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential){ (authResult,error) in
+            if let error = error{
+                print("Google Auth Failed: \(error.localizedDescription)")
+                return
+            }
+            
+        }
+        
         print("User Email: \(user.profile.email ?? "No Email") ")
     }
     
@@ -43,6 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return GIDSignIn.sharedInstance().handle(url)
     }
 
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        //TODO
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
