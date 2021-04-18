@@ -26,18 +26,45 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginTitle.font = UIFont(name:"BebasNeue",size:70)
+        Auth.auth().addStateDidChangeListener{ (auth,user) in
+            if(user != nil){
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
+        }
+        
+        loginTitle.font = UIFont(name:"BebasNeue",size:80)
         loginTitle.textAlignment = NSTextAlignment.center
-        googleButton.titleLabel?.font = UIFont(name:"BebasNeue",size:20)
-        appleButton.titleLabel?.font = UIFont(name:"BebasNeue",size:20)
-        phoneButton.titleLabel?.font = UIFont(name:"BebasNeue",size:20)
-        emailButton.titleLabel?.font = UIFont(name:"BebasNeue",size:20)
+        googleButton.layer.cornerRadius = 20
+        appleButton.layer.cornerRadius = 20
+        phoneButton.layer.cornerRadius = 20
+        emailButton.layer.cornerRadius = 20
         loginTitle.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
+        
+        // Whatever you image view is, obviously not hardcoded like this
+        let imageView = UIImageView.init(image: UIImage(named: "movies.jpg"))
+        imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+100, height: 300)
+        self.view.insertSubview(imageView, at: 0)
+        // Create the gradient layer
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = imageView.bounds
+        gradientLayer.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.4).cgColor]
+        // Whatever direction you want the fade. You can use gradientLayer.locations
+        // to provide an array of points, with matching colors for each point,
+        // which lets you do other than just a uniform gradient.
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0);
+        // Use the gradient layer as the mask
+        imageView.layer.mask = gradientLayer;
+        
     }
     
     @IBAction func authGoogle(_ sender: Any) {
-            GIDSignIn.sharedInstance()?.presentingViewController = self
-            GIDSignIn.sharedInstance()?.signIn()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     func requestAppleID()-> ASAuthorizationAppleIDRequest{
