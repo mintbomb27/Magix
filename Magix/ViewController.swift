@@ -22,43 +22,69 @@ class ViewController: UIViewController {
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
+    //@IBOutlet weak var textView: UIView!
+    //@IBOutlet weak var passView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Auth.auth().addStateDidChangeListener{ (auth,user) in
-            if(user != nil){
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
-        }
-        
         loginTitle.font = UIFont(name:"BebasNeue",size:80)
-        loginTitle.textAlignment = NSTextAlignment.center
+        loginTitle.layer.shadowColor = UIColor.black.cgColor
+        loginTitle.layer.shadowRadius = 10
+        loginTitle.layer.shadowOpacity = 2
         googleButton.layer.cornerRadius = 20
         appleButton.layer.cornerRadius = 20
         phoneButton.layer.cornerRadius = 20
         emailButton.layer.cornerRadius = 20
-        loginTitle.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
         
-        // Whatever you image view is, obviously not hardcoded like this
+        //Movie Grid Gradient
         let imageView = UIImageView.init(image: UIImage(named: "movies.jpg"))
         imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+100, height: 300)
         self.view.insertSubview(imageView, at: 0)
-        // Create the gradient layer
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = imageView.bounds
         gradientLayer.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.4).cgColor]
-        // Whatever direction you want the fade. You can use gradientLayer.locations
-        // to provide an array of points, with matching colors for each point,
-        // which lets you do other than just a uniform gradient.
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0);
-        // Use the gradient layer as the mask
         imageView.layer.mask = gradientLayer;
+        
+        Auth.auth().addStateDidChangeListener({(auth, user) in
+            if(user != nil){
+                let profileVC = self.storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileViewController
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            }
+        })
+        
+        //Material TextView
+        /*let textField = MDCOutlinedTextField(frame: textView.frame)
+        textField.setOutlineColor(UIColor.red, for: .normal)
+        textField.setOutlineColor(UIColor.red, for: .editing)
+        textField.setTextColor(UIColor.white, for: .editing)
+        textField.tintColor = UIColor.white
+        textField.setFloatingLabelColor(UIColor.white, for: .editing)
+        
+        textField.label.text = "Email Address"
+        textField.placeholder = "Email"
+        textField.keyboardType = .emailAddress
+        textField.sizeToFit()
+        view.addSubview(textField)
+        
+        //Material Pass
+        let passField = MDCOutlinedTextField(frame: textView.frame)
+        passField.setOutlineColor(UIColor.red, for: .normal)
+        passField.setOutlineColor(UIColor.red, for: .editing)
+        passField.setTextColor(UIColor.white, for: .editing)
+        passField.tintColor = UIColor.white
+        passField.setFloatingLabelColor(UIColor.white, for: .editing)
+        
+        passField.label.text = "Password"
+        passField.placeholder = "Password"
+        passField.keyboardType = .alphabet
+        passField.isSecureTextEntry = true
+        passField.sizeToFit()
+        view.addSubview(passField)*/
         
     }
     

@@ -24,10 +24,10 @@ class PhoneLoginController: UIViewController {
     }
     
     override func updateViewConstraints() {
-        self.view.frame.size.height = UIScreen.main.bounds.height*0.45
-        self.view.frame.origin.y =  UIScreen.main.bounds.height - UIScreen.main.bounds.height*0.45
-        self.view.roundCorners(corners: [.topLeft, .topRight], radius: 10.0)
-        super.updateViewConstraints()
+            self.view.frame.size.height = UIScreen.main.bounds.height*0.45
+            self.view.frame.origin.y =  UIScreen.main.bounds.height - UIScreen.main.bounds.height*0.45
+            self.view.roundCorners(corners: [.topLeft, .topRight], radius: 10.0)
+            super.updateViewConstraints()
     }
 
     @IBAction func authPhone(_ sender: Any) {
@@ -76,14 +76,17 @@ class PhoneLoginController: UIViewController {
             print("Signed In with Phone!")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            self.dismiss(animated: true){
+                appDelegate.window?.rootViewController?.present(vc, animated: true)
+            }
         })
     }
     
     func alertPrompt(message: String, title: String, prompt: String) -> () {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default))
+        self.present(alert, animated: true)
     }
     
 }

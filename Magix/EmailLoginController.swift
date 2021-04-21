@@ -66,14 +66,27 @@ class EmailLoginController: UIViewController {
         } else {setBorders(fieldName: passField, borderColor: UIColor.lightGray.cgColor, animate: true)}
         if(flag){
             firebaseAuth.signIn(withEmail: emailField.text!, password: passField.text!, completion: {(authResult, error) in
-                if(error != nil){
-                    print(error!.localizedDescription)
+                if let error = error as NSError?{
+                    print(error)
+                    if let code = AuthErrorCode(rawValue: error.code) {
+                        switch code.rawValue {
+                        case 17009:
+                            self.alertPrompt(message: "Invalid username or password", title: "Oops!", prompt: "OK")
+                            break
+                        case 17011:
+                            self.alertPrompt(message: "Invalid username or password", title: "Oops!", prompt: "OK")
+                            break
+                        default:
+                            self.alertPrompt(message: "Unknown Error", title: "Oops!", prompt: "OK")
+                        }
+                    }
+                    else{
+                        self.alertPrompt(message: "Unknown Error", title: "Oops!", prompt: "OK")
+                    }
                     return
                 }
                 print("Success Logged In: \(authResult!.user.email!)")
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
+                self.dismiss(animated: true)
             })
         }
     }
@@ -114,6 +127,13 @@ class EmailLoginController: UIViewController {
             firebaseAuth.createUser(withEmail: emailField.text!, password: passField.text!, completion: {authResult,error in print("Done!")})
         }
     }
+    
+    func alertPrompt(message: String, title: String, prompt: String) -> () {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default))
+        self.present(alert, animated: true)
+    }
+    
 }
 
 extension UIView {

@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var helloLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var backButton: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +43,10 @@ class ProfileViewController: UIViewController {
     @IBAction func signOut(_ sender: Any) {
         do {
             try Auth.auth().signOut()
+            self.navigationController?.popViewController(animated: true)
         } catch {
-            print("Error")
+            print("Error Signing Out!")
         }
-        self.dismiss(animated: true)
     }
+    
 }

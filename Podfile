@@ -8,6 +8,11 @@ target 'Magix' do
   # Pods for Magix
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'MaterialComponents/TextControls+FilledTextAreas'
+  pod 'MaterialComponents/TextControls+FilledTextFields'
+  pod 'MaterialComponents/TextControls+OutlinedTextAreas'
+  pod 'MaterialComponents/TextControls+OutlinedTextFields'
+  
   target 'MagixTests' do
     inherit! :search_paths
     # Pods for testing
