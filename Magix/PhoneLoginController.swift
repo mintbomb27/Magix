@@ -74,14 +74,13 @@ class PhoneLoginController: UIViewController {
                 return
             }
             print("Signed In with Phone!")
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-            vc.modalPresentationStyle = .fullScreen
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            self.dismiss(animated: true){
-                appDelegate.window?.rootViewController?.present(vc, animated: true)
-            }
+            self.dismiss(animated: true)
         })
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            updateViewConstraints()
+        }
     
     func alertPrompt(message: String, title: String, prompt: String) -> () {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

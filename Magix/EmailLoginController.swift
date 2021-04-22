@@ -18,8 +18,6 @@ class EmailLoginController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButtonOB: UIButton!
     
-    
-    
     //FIREBASE FUNCTIONS
     var firebaseAuth = Auth.auth()
     
@@ -125,6 +123,22 @@ class EmailLoginController: UIViewController {
         }
         if(flag){
             firebaseAuth.createUser(withEmail: emailField.text!, password: passField.text!, completion: {authResult,error in print("Done!")})
+        }
+    }
+    
+    @IBAction func passReset(_ sender: Any) {
+        if let email = emailField.text{
+            firebaseAuth.sendPasswordReset(withEmail: email, completion: { (error) in
+                if let error = error{
+                    self.alertPrompt(message: error.localizedDescription, title: "Oops!", prompt: "OK")
+                    let errorCode = AuthErrorCode(rawValue: (error as NSError).code)
+                    if errorCode?.rawValue == 17034{
+                        self.setBorders(fieldName: self.emailField, borderColor: UIColor.red.cgColor, animate: true)
+                    }
+                    return
+                }
+                self.alertPrompt(message: "Please check your email for the password reset link", title: "Done!", prompt: "OK")
+            })
         }
     }
     

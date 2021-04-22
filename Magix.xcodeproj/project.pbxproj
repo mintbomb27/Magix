@@ -24,9 +24,7 @@
 		8CC926B1262B5066001B454A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC926B0262B5065001B454A /* ProfileViewController.swift */; };
 		8CC926B6262C44A6001B454A /* movies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8CC926B5262C44A6001B454A /* movies.jpg */; };
 		8CC926BB262C6039001B454A /* pp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC926BA262C6039001B454A /* pp.png */; };
-		8CCB1F63263093C6008BBA12 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCB1F62263093C6008BBA12 /* CustomTextField.swift */; };
 		8CFEE616262E884B000A8926 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEE615262E884B000A8926 /* NavViewController.swift */; };
-		8CFEE61B262EC033000A8926 /* EmailMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEE61A262EC033000A8926 /* EmailMaterialViewController.swift */; };
 		C018481351A080B4DB814B8E /* Pods_MagixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18058F9C00E89C8D4175874A /* Pods_MagixTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,9 +75,7 @@
 		8CC926B0262B5065001B454A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8CC926B5262C44A6001B454A /* movies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = movies.jpg; sourceTree = "<group>"; };
 		8CC926BA262C6039001B454A /* pp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pp.png; sourceTree = "<group>"; };
-		8CCB1F62263093C6008BBA12 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		8CFEE615262E884B000A8926 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
-		8CFEE61A262EC033000A8926 /* EmailMaterialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMaterialViewController.swift; sourceTree = "<group>"; };
 		AB2210869A3F079FB6049169 /* Pods-MagixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagixTests.debug.xcconfig"; path = "Target Support Files/Pods-MagixTests/Pods-MagixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70E3D98583FD41AAC3A1605 /* Pods_Magix_MagixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magix_MagixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -148,11 +144,9 @@
 				8C05AF1226289D59008963C2 /* Info.plist */,
 				8C05AF402628AC66008963C2 /* BebasNeue.otf */,
 				8C78FB6D2629971200AA5843 /* EmailLoginController.swift */,
-				8CFEE61A262EC033000A8926 /* EmailMaterialViewController.swift */,
 				8CC9267F262A1370001B454A /* PhoneLoginController.swift */,
 				8CC926B0262B5065001B454A /* ProfileViewController.swift */,
 				8CFEE615262E884B000A8926 /* NavViewController.swift */,
-				8CCB1F62263093C6008BBA12 /* CustomTextField.swift */,
 			);
 			path = Magix;
 			sourceTree = "<group>";
@@ -487,11 +481,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CFEE61B262EC033000A8926 /* EmailMaterialViewController.swift in Sources */,
 				8CC926B1262B5066001B454A /* ProfileViewController.swift in Sources */,
 				8C05AF0926289D56008963C2 /* ViewController.swift in Sources */,
 				8C05AF0526289D56008963C2 /* AppDelegate.swift in Sources */,
-				8CCB1F63263093C6008BBA12 /* CustomTextField.swift in Sources */,
 				8C78FB6E2629971200AA5843 /* EmailLoginController.swift in Sources */,
 				8CFEE616262E884B000A8926 /* NavViewController.swift in Sources */,
 				8CC92680262A1370001B454A /* PhoneLoginController.swift in Sources */,
