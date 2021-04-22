@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class EmailLoginController: UIViewController {
 
@@ -20,6 +21,8 @@ class EmailLoginController: UIViewController {
     
     //FIREBASE FUNCTIONS
     var firebaseAuth = Auth.auth()
+    var rFlag = false
+    var dbRef: DatabaseReference = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +74,6 @@ class EmailLoginController: UIViewController {
         if(flag){
             firebaseAuth.signIn(withEmail: emailField.text!, password: passField.text!, completion: {(authResult, error) in
                 if let error = error as NSError?{
-                    print(error)
                     if let code = AuthErrorCode(rawValue: error.code) {
                         switch code.rawValue {
                         case 17009,17011:
@@ -97,35 +99,41 @@ class EmailLoginController: UIViewController {
             UIView.transition(with: firstNameField, duration: 0.5, options: .transitionCrossDissolve, animations: { self.firstNameField.isHidden = false })
             UIView.transition(with: lastNameField, duration: 0.5, options: .transitionCrossDissolve, animations: { self.lastNameField.isHidden = false })
             return
-        }
-        var flag = true
-        
-        if(emailField.text!.isEmpty){
-            setBorders(fieldName: emailField, borderColor: UIColor.red.cgColor, animate: true)
-            flag = false
         } else {
-            setBorders(fieldName: emailField, borderColor: UIColor.lightGray.cgColor, animate: true)
-        }
-        if(passField.text!.isEmpty){
-            setBorders(fieldName: passField, borderColor: UIColor.red.cgColor, animate: true)
-            flag = false
-        } else {
-            setBorders(fieldName: passField, borderColor: UIColor.lightGray.cgColor, animate: true)
-        }
-        if(firstNameField.text!.isEmpty){
-            setBorders(fieldName: firstNameField, borderColor: UIColor.red.cgColor, animate: true)
-            flag = false
-        } else {
-            setBorders(fieldName: firstNameField, borderColor: UIColor.lightGray.cgColor, animate: true)
-        }
-        if(lastNameField.text!.isEmpty){
-            setBorders(fieldName: lastNameField, borderColor: UIColor.red.cgColor, animate: true)
-            flag = false
-        } else {
-            setBorders(fieldName: lastNameField, borderColor: UIColor.lightGray.cgColor, animate: true)
-        }
-        if(flag){
-            firebaseAuth.createUser(withEmail: emailField.text!, password: passField.text!, completion: {authResult,error in print("Done!")})
+            var flag = true
+            
+            if(emailField.text!.isEmpty){
+                setBorders(fieldName: emailField, borderColor: UIColor.red.cgColor, animate: true)
+                flag = false
+            } else {
+                setBorders(fieldName: emailField, borderColor: UIColor.lightGray.cgColor, animate: true)
+            }
+            if(passField.text!.isEmpty){
+                setBorders(fieldName: passField, borderColor: UIColor.red.cgColor, animate: true)
+                flag = false
+            } else {
+                setBorders(fieldName: passField, borderColor: UIColor.lightGray.cgColor, animate: true)
+            }
+            if(firstNameField.text!.isEmpty){
+                setBorders(fieldName: firstNameField, borderColor: UIColor.red.cgColor, animate: true)
+                flag = false
+            } else {
+                setBorders(fieldName: firstNameField, borderColor: UIColor.lightGray.cgColor, animate: true)
+            }
+            if(lastNameField.text!.isEmpty){
+                setBorders(fieldName: lastNameField, borderColor: UIColor.red.cgColor, animate: true)
+                flag = false
+            } else {
+                setBorders(fieldName: lastNameField, borderColor: UIColor.lightGray.cgColor, animate: true)
+            }
+            if(flag){
+                firebaseAuth.createUser(withEmail: emailField.text!, password: passField.text!, completion: { (authResult,error) in
+                    guard let uid = authResult?.user.uid else { return }
+                    self.dbRef.child("users/\(uid)/name").setValue(self.firstNameField.text)
+                    self.dbRef.child("users/\(uid)/phone").setValue(self.lastNameField.text)
+                })
+                self.dismiss(animated: true)
+            }
         }
     }
     //Reset Password
