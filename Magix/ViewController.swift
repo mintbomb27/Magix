@@ -22,12 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
-    //@IBOutlet weak var textView: UIView!
-    //@IBOutlet weak var passView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //UI Changes Apply
         loginTitle.font = UIFont(name:"BebasNeue",size:80)
         loginTitle.layer.shadowColor = UIColor.black.cgColor
         loginTitle.layer.shadowRadius = 10
@@ -37,7 +36,7 @@ class ViewController: UIViewController {
         phoneButton.layer.cornerRadius = 20
         emailButton.layer.cornerRadius = 20
         
-        //Movie Grid Gradient
+        //Movie Image Background Gradient
         let imageView = UIImageView.init(image: UIImage(named: "movies.jpg"))
         imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+100, height: 300)
         self.view.insertSubview(imageView, at: 0)
@@ -50,6 +49,7 @@ class ViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0);
         imageView.layer.mask = gradientLayer;
         
+        //Detect AuthChange and Move to ProfileVC
         Auth.auth().addStateDidChangeListener({(auth, user) in
             if(user != nil){
                 let profileVC = self.storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileViewController
@@ -57,42 +57,24 @@ class ViewController: UIViewController {
             }
         })
         
-        //Material TextView
-        /*let textField = MDCOutlinedTextField(frame: textView.frame)
-        textField.setOutlineColor(UIColor.red, for: .normal)
-        textField.setOutlineColor(UIColor.red, for: .editing)
-        textField.setTextColor(UIColor.white, for: .editing)
-        textField.tintColor = UIColor.white
-        textField.setFloatingLabelColor(UIColor.white, for: .editing)
-        
-        textField.label.text = "Email Address"
-        textField.placeholder = "Email"
-        textField.keyboardType = .emailAddress
-        textField.sizeToFit()
-        view.addSubview(textField)
-        
-        //Material Pass
-        let passField = MDCOutlinedTextField(frame: textView.frame)
-        passField.setOutlineColor(UIColor.red, for: .normal)
-        passField.setOutlineColor(UIColor.red, for: .editing)
-        passField.setTextColor(UIColor.white, for: .editing)
-        passField.tintColor = UIColor.white
-        passField.setFloatingLabelColor(UIColor.white, for: .editing)
-        
-        passField.label.text = "Password"
-        passField.placeholder = "Password"
-        passField.keyboardType = .alphabet
-        passField.isSecureTextEntry = true
-        passField.sizeToFit()
-        view.addSubview(passField)*/
-        
     }
-    
+    //MARK: GOOGLE AUTHENTICATION
     @IBAction func authGoogle(_ sender: Any) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.signIn()
     }
     
+    //MARK: APPLE AUTHENTICATION
+    @IBAction func authApple(_ sender: Any) {
+        let request = requestAppleID()
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        
+        controller.presentationContextProvider = self
+        controller.delegate = self
+        controller.performRequests()
+    }
+    
+    //Request AppleID
     func requestAppleID()-> ASAuthorizationAppleIDRequest{
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
@@ -104,15 +86,7 @@ class ViewController: UIViewController {
         return request
     }
     
-    @IBAction func authApple(_ sender: Any) {
-        let request = requestAppleID()
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        
-        controller.presentationContextProvider = self
-        controller.delegate = self
-        controller.performRequests()
-    }
-    
+    //Nonce String for AppleID Request
     private func randomNonceString(length: Int = 32) -> String {
       precondition(length > 0)
       let charset: Array<Character> =
@@ -145,6 +119,7 @@ class ViewController: UIViewController {
       return result
     }
     
+    //SHA256 Function for Nonce
     private func sha256(_ input: String) -> String {
       let inputData = Data(input.utf8)
       let hashedData = SHA256.hash(data: inputData)
@@ -157,12 +132,40 @@ class ViewController: UIViewController {
     
 }
 
+//Connecting Apple to Firebase
 extension ViewController: ASAuthorizationControllerDelegate{
-    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredentials = authorization.credential as? ASAuthorizationAppleIDCredential else {
+            fatalError("Invalid State: Login callback received, but no request sent")
+        }
+        guard let appleIDToken = appleIDCredentials.identityToken else {
+            print("Unable to fetch the ID Token")
+            return
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            print("Unable to Parse the ID Token")
+            return
+        }
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: currentNonce)
+        Auth.auth().signIn(with: credential, completion: { (authResult, error) in
+            if let error = error{
+                self.alertPrompt(message: error.localizedDescription, title: "Oops!", prompt: "OK")
+                return
+            }
+        })
+    }
 }
-
 extension ViewController: ASAuthorizationControllerPresentationContextProviding{
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+//AlertPrompt Extension to be used everywhere
+extension UIViewController {
+    func alertPrompt(message: String, title: String, prompt: String) -> () {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default))
+        self.present(alert, animated: true)
     }
 }

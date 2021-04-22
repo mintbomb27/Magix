@@ -9,9 +9,6 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController {
-
-    //MARK: DATA
-    var dataMe: String = ""
     
     //MARK: OUTLETS
     @IBOutlet weak var helloLabel: UILabel!
@@ -22,13 +19,13 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Populate Fields if User Exists
         Auth.auth().addStateDidChangeListener{ [self] (auth,user) in
             if(user != nil){
+                //Fetch User Image if exists and make it Round
                 if let url = user?.photoURL, let image = try? Data(contentsOf: url), let imageV = UIImage(data:image){
                     profileImage.image = imageV
-                    profileImage.layer.borderWidth = 0
                     profileImage.layer.masksToBounds = false
-                    profileImage.layer.borderColor = UIColor.white.cgColor
                     profileImage.layer.cornerRadius = imageV.size.width/2
                     profileImage.clipsToBounds = true
                 }
@@ -38,8 +35,8 @@ class ProfileViewController: UIViewController {
                 } else { phoneLabel.text = "" }
                 if let name = user?.displayName{
                     helloLabel.text = name
-                    if(helloLabel.bounds.size.width<helloLabel.frame.width){
-                        helloLabel.text = name.components(separatedBy: " ")[0]
+                    if(helloLabel.bounds.size.width<helloLabel.frame.width){ //If Name Clipping, choose First Name
+                        helloLabel.text = name.components(separatedBy: " ")[0] // First Name
                     }
                 }
                 if let email = user?.email{
@@ -48,7 +45,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+    //Sign Out and Pop VC
     @IBAction func signOut(_ sender: Any) {
         do {
             try Auth.auth().signOut()

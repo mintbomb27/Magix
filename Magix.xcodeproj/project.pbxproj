@@ -19,11 +19,7 @@
 		8C05AF412628AC66008963C2 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8C05AF402628AC66008963C2 /* BebasNeue.otf */; };
 		8C78FB6E2629971200AA5843 /* EmailLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C78FB6D2629971200AA5843 /* EmailLoginController.swift */; };
 		8CC92680262A1370001B454A /* PhoneLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9267F262A1370001B454A /* PhoneLoginController.swift */; };
-		8CC92688262A9F85001B454A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC92687262A9F85001B454A /* GoogleService-Info.plist */; };
-		8CC926A8262B0895001B454A /* white-google-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC926A7262B0895001B454A /* white-google-logo.png */; };
 		8CC926B1262B5066001B454A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC926B0262B5065001B454A /* ProfileViewController.swift */; };
-		8CC926B6262C44A6001B454A /* movies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8CC926B5262C44A6001B454A /* movies.jpg */; };
-		8CC926BB262C6039001B454A /* pp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC926BA262C6039001B454A /* pp.png */; };
 		8CFEE616262E884B000A8926 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEE615262E884B000A8926 /* NavViewController.swift */; };
 		C018481351A080B4DB814B8E /* Pods_MagixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18058F9C00E89C8D4175874A /* Pods_MagixTests.framework */; };
 /* End PBXBuildFile section */
@@ -70,11 +66,7 @@
 		8C78FB66262944D300AA5843 /* Magix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Magix.entitlements; sourceTree = "<group>"; };
 		8C78FB6D2629971200AA5843 /* EmailLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginController.swift; sourceTree = "<group>"; };
 		8CC9267F262A1370001B454A /* PhoneLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginController.swift; sourceTree = "<group>"; };
-		8CC92687262A9F85001B454A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8CC926A7262B0895001B454A /* white-google-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-google-logo.png"; sourceTree = "<group>"; };
 		8CC926B0262B5065001B454A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8CC926B5262C44A6001B454A /* movies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = movies.jpg; sourceTree = "<group>"; };
-		8CC926BA262C6039001B454A /* pp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pp.png; sourceTree = "<group>"; };
 		8CFEE615262E884B000A8926 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		AB2210869A3F079FB6049169 /* Pods-MagixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagixTests.debug.xcconfig"; path = "Target Support Files/Pods-MagixTests/Pods-MagixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70E3D98583FD41AAC3A1605 /* Pods_Magix_MagixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magix_MagixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,8 +125,6 @@
 		8C05AF0326289D56008963C2 /* Magix */ = {
 			isa = PBXGroup;
 			children = (
-				8CC926AC262B089A001B454A /* Images */,
-				8CC92687262A9F85001B454A /* GoogleService-Info.plist */,
 				8C78FB66262944D300AA5843 /* Magix.entitlements */,
 				8C05AF0426289D56008963C2 /* AppDelegate.swift */,
 				8C05AF0826289D56008963C2 /* ViewController.swift */,
@@ -167,16 +157,6 @@
 				8C05AF2826289D59008963C2 /* Info.plist */,
 			);
 			path = MagixUITests;
-			sourceTree = "<group>";
-		};
-		8CC926AC262B089A001B454A /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				8CC926BA262C6039001B454A /* pp.png */,
-				8CC926B5262C44A6001B454A /* movies.jpg */,
-				8CC926A7262B0895001B454A /* white-google-logo.png */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		9582E7DE73D497579EE3F98A /* Frameworks */ = {
@@ -313,11 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C05AF1126289D59008963C2 /* LaunchScreen.storyboard in Resources */,
-				8CC926BB262C6039001B454A /* pp.png in Resources */,
-				8CC926A8262B0895001B454A /* white-google-logo.png in Resources */,
-				8CC926B6262C44A6001B454A /* movies.jpg in Resources */,
 				8C05AF0E26289D59008963C2 /* Assets.xcassets in Resources */,
-				8CC92688262A9F85001B454A /* GoogleService-Info.plist in Resources */,
 				8C05AF412628AC66008963C2 /* BebasNeue.otf in Resources */,
 				8C05AF0C26289D57008963C2 /* Main.storyboard in Resources */,
 			);

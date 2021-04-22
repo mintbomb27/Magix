@@ -10,7 +10,7 @@ import Firebase
 
 class EmailLoginController: UIViewController {
 
-    //OUTLETS
+    //MARK: OUTLETS
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
@@ -27,14 +27,18 @@ class EmailLoginController: UIViewController {
         loginButton.layer.cornerRadius = 20
         registerButtonOB.layer.cornerRadius = 20
         
+        //Hiding Register Fields
         firstNameField.isHidden = true
         lastNameField.isHidden = true
+        
+        //Setting Round Borders
         setBorders(fieldName: emailField, borderColor: UIColor.lightGray.cgColor,animate: false)
         setBorders(fieldName: passField, borderColor: UIColor.lightGray.cgColor,animate: false)
         setBorders(fieldName: firstNameField, borderColor: UIColor.lightGray.cgColor,animate: false)
         setBorders(fieldName: lastNameField, borderColor: UIColor.lightGray.cgColor,animate: false)
     }
     
+    //Reducing Modal Height
     override func updateViewConstraints() {
         self.view.frame.size.height = UIScreen.main.bounds.height - 300
         self.view.frame.origin.y =  300
@@ -42,8 +46,8 @@ class EmailLoginController: UIViewController {
         super.updateViewConstraints()
     }
     
+    //Function for Setting Round Borders with Color
     func setBorders(fieldName:UITextField, borderColor:CGColor, animate:Bool) -> () {
-        //fieldName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         fieldName.layer.borderWidth = 2
         fieldName.layer.cornerRadius = 10
         fieldName.clipsToBounds = true
@@ -52,7 +56,9 @@ class EmailLoginController: UIViewController {
         }
     }
     
+    //MARK: EMAIL AUTHENTICATION
     @IBAction func loginButton(_ sender: Any) {
+        //Form Validation
         var flag = true
         if(emailField.text!.isEmpty){
             setBorders(fieldName: emailField, borderColor: UIColor.red.cgColor, animate: true)
@@ -68,10 +74,7 @@ class EmailLoginController: UIViewController {
                     print(error)
                     if let code = AuthErrorCode(rawValue: error.code) {
                         switch code.rawValue {
-                        case 17009:
-                            self.alertPrompt(message: "Invalid username or password", title: "Oops!", prompt: "OK")
-                            break
-                        case 17011:
+                        case 17009,17011:
                             self.alertPrompt(message: "Invalid username or password", title: "Oops!", prompt: "OK")
                             break
                         default:
@@ -88,7 +91,7 @@ class EmailLoginController: UIViewController {
             })
         }
     }
-    
+    //Register New User
     @IBAction func registerButton(_ sender: Any) {
         if(self.firstNameField.isHidden){
             UIView.transition(with: firstNameField, duration: 0.5, options: .transitionCrossDissolve, animations: { self.firstNameField.isHidden = false })
@@ -125,7 +128,7 @@ class EmailLoginController: UIViewController {
             firebaseAuth.createUser(withEmail: emailField.text!, password: passField.text!, completion: {authResult,error in print("Done!")})
         }
     }
-    
+    //Reset Password
     @IBAction func passReset(_ sender: Any) {
         if let email = emailField.text{
             firebaseAuth.sendPasswordReset(withEmail: email, completion: { (error) in
@@ -141,15 +144,8 @@ class EmailLoginController: UIViewController {
             })
         }
     }
-    
-    func alertPrompt(message: String, title: String, prompt: String) -> () {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default))
-        self.present(alert, animated: true)
-    }
-    
 }
-
+//Rouding Corners for updateViewConstraints()
 extension UIView {
    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))

@@ -15,7 +15,7 @@ class PhoneLoginController: UIViewController {
     @IBOutlet weak var phoneAuthButton: UIButton!
     @IBOutlet weak var verifyButtonOutlet: UIButton!
     
-    var resendFlag: Bool = false
+    var resendFlag: Bool = false // Resend OTP Flag
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,7 @@ class PhoneLoginController: UIViewController {
         resendFlag = false
     }
     
+    //Reduce height of Modal
     override func updateViewConstraints() {
             self.view.frame.size.height = UIScreen.main.bounds.height*0.45
             self.view.frame.origin.y =  UIScreen.main.bounds.height - UIScreen.main.bounds.height*0.45
@@ -30,29 +31,31 @@ class PhoneLoginController: UIViewController {
             super.updateViewConstraints()
     }
 
+    //MARK: PHONE AUTHENTICATION
     @IBAction func authPhone(_ sender: Any) {
         if let phoneNumber = phoneField.text {
-            if phoneNumber != "" && phoneNumber.count == 10 && resendFlag == false{
+            if phoneNumber != "" && phoneNumber.count == 10 && resendFlag == false{ // Form Validation
                 PhoneAuthProvider.provider().verifyPhoneNumber("+91\(phoneNumber)", uiDelegate: nil) { (verificationID, error) in
                     if let error = error{
                         print(error)
                         self.alertPrompt(message: error.localizedDescription, title: "Oops!", prompt: "OK")
                         return
                     }
-                    self.phoneField.text = ""
+                    self.phoneField.text = "" // Reset Text for OTP
+                    
+                    //Transition from Phone Number to Verification Code
                     UIView.transition(with: self.phoneField, duration: 0.5, options: .transitionCrossDissolve, animations: { self.phoneField.placeholder = "Verification Code" })
                     UIView.transition(with: self.verifyButtonOutlet, duration: 0.5, options: .transitionCrossDissolve, animations: { self.verifyButtonOutlet.isHidden = false })
                     UIView.transition(with: self.phoneAuthButton, duration: 0.5, options: .transitionCrossDissolve, animations: { self.phoneAuthButton.setTitle("Resend", for: .normal) })
                     UserDefaults.standard.set(verificationID,forKey: "authVerificationID")
-                    UserDefaults.standard.set(phoneNumber, forKey: "phoneNumberTemp")
+                    UserDefaults.standard.set(phoneNumber, forKey: "phoneNumberTemp") // Storing Phone Number for Resend OTP
                     self.resendFlag = true
                 }
             }
-            else if resendFlag == true {
+            else if resendFlag == true { // Resend OTP
                 if let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumberTemp"){
                     PhoneAuthProvider.provider().verifyPhoneNumber("+91\(phoneNumber)", uiDelegate: nil) { (verificationID, error) in
                         if let error = error{
-                            print(error)
                             self.alertPrompt(message: error.localizedDescription, title: "Oops!", prompt: "OK")
                             return
                         }
@@ -60,9 +63,10 @@ class PhoneLoginController: UIViewController {
                     }
                 }
             }
-            else {self.alertPrompt(message: "Invalid Format", title: "Oops!", prompt: "OK")}
+            else {alertPrompt(message: "Invalid Format", title: "Oops!", prompt: "OK")}
         }
     }
+    //Verify Code and Sign In
     @IBAction func verifyButton(_ sender: Any) {
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {return}
         guard let verCode = phoneField.text else { return }
@@ -78,14 +82,9 @@ class PhoneLoginController: UIViewController {
         })
     }
     
+    //Fix Modal Height on Re-Entering View
     override func viewWillAppear(_ animated: Bool) {
             updateViewConstraints()
         }
-    
-    func alertPrompt(message: String, title: String, prompt: String) -> () {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: prompt, style: UIAlertAction.Style.default))
-        self.present(alert, animated: true)
-    }
     
 }
