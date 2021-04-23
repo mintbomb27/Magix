@@ -56,6 +56,7 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.5.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22.1)
   - MaterialComponents/AnimationTiming (124.1.1)
   - MaterialComponents/Availability (124.1.1)
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - GoogleSignIn
+  - IQKeyboardManagerSwift
   - "MaterialComponents/TextControls+FilledTextFields"
 
 SPEC REPOS:
@@ -119,6 +121,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
     - MaterialComponents
     - MDFInternationalization
@@ -137,12 +140,13 @@ SPEC CHECKSUMS:
   GoogleUtilities: abda45f519bc4073aa1171d2f8742108def46017
   GTMAppAuth: 5b53231ef6920f149ab84b2969cb0ab572da3077
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   MaterialComponents: b9f58f24bf74588a83b2dce05802a11aaed5257d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: afec9453d085bd2b10c4073f2cb6ea46fe134a5c
+PODFILE CHECKSUM: cbfb6b0f33e0455e68a6e15fb9a5acef035165be
 
 COCOAPODS: 1.10.1

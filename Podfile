@@ -10,6 +10,7 @@ target 'Magix' do
   pod 'GoogleSignIn'
   pod 'MaterialComponents/TextControls+FilledTextFields'
   pod 'Firebase/Database'
+  pod 'IQKeyboardManagerSwift'
   
   target 'MagixTests' do
     inherit! :search_paths
