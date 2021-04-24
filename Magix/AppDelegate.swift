@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
 import GoogleSignIn
 import IQKeyboardManagerSwift
 
@@ -14,13 +15,17 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
         
         IQKeyboardManager.shared.enable = true
         
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert,.badge,.sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions){_,_ in }
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        application.registerForRemoteNotifications()
         //Fetching ClientID from GoogleServices-Info.plist
         var clientID: [String:Any]?
         if let gservicesPlistPath = Bundle.main.url(forResource: "GoogleService-Info", withExtension:"plist"){
@@ -43,20 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     private func initFirstVC(){
-        let initialVC : UIViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let authStatus = UserDefaults.standard.bool(forKey: "isSignedIn")
         window = UIWindow()
         
-        if(Auth.auth().currentUser != nil){
+        let navVC = storyboard.instantiateViewController(identifier: "navVC") as! NavViewController
+        window?.rootViewController = navVC
+        if(authStatus == true){
             let profileVC = storyboard.instantiateViewController(identifier: "ProfileVC") as! ProfileViewController
-            initialVC = profileVC
+            navVC.pushViewController(profileVC, animated: false)
         }
-        else {
-            let loginVC = storyboard.instantiateViewController(identifier: "LoginVC") as! ViewController
-            initialVC = loginVC
-        }
-        let nav = storyboard.instantiateViewController(identifier: "navVC") as! NavViewController
-        window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
     
@@ -88,3 +89,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 }
 
+extension AppDelegate: MessagingDelegate{
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        return Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        let tokenDict = ["token":fcmToken ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil,userInfo: tokenDict)
+    }
+    
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner,.sound])
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}

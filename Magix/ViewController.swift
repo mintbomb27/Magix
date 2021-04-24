@@ -53,6 +53,7 @@ class ViewController: UIViewController {
         //Detect AuthChange and Move to ProfileVC
         Auth.auth().addStateDidChangeListener({(auth, user) in
             if(user != nil){
+                UserDefaults.standard.set(true, forKey: "isSignedIn")
                 let profileVC = self.storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileViewController
                 self.navigationController?.pushViewController(profileVC, animated: true)
             }

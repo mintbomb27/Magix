@@ -83,6 +83,7 @@ class ProfileViewController: UIViewController {
     @IBAction func signOut(_ sender: Any) {
         do {
             try Auth.auth().signOut()
+            UserDefaults.standard.set(false, forKey: "isSignedIn")
             self.navigationController?.popViewController(animated: true)
         } catch {
             print("Error Signing Out!")
