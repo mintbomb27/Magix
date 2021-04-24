@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import PhoneNumberKit
 
 class ProfileViewController: UIViewController {
     
@@ -38,7 +39,11 @@ class ProfileViewController: UIViewController {
                     profileImage.clipsToBounds = true
                 }
                 if let phone = user?.phoneNumber{
-                    phoneLabel.text = phone
+                    let phoneKit = PhoneNumberKit()
+                    var phoneNumber = ""
+                    do { phoneNumber = try phoneKit.format(phoneKit.parse(phone), toType: .international) } catch { print("Error Parsing PhoneNumber") }
+                    print(phoneNumber)
+                    phoneLabel.text = phoneNumber
                 } else {
                     self.dbRef.child("users/\(uid)/phone").observeSingleEvent(of: .value, with: {
                         (snapShot) in
@@ -46,7 +51,7 @@ class ProfileViewController: UIViewController {
                             phone = "\(snapShot.value!)"
                             phoneLabel.text = phone
                         } else {
-                            print("No Data Available")
+                            //print("No Data Available")
                         }
                     }) { (error) in
                         print(error)
@@ -67,7 +72,7 @@ class ProfileViewController: UIViewController {
                                 helloLabel.text = name.components(separatedBy: " ")[0] // First Name
                             }
                         } else {
-                            print("No Data Available")
+                            //print("No Data Available")
                         }
                     }) { (error) in
                         print(error)

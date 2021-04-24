@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import PhoneNumberKit
 import OTPFieldView
+
 class PhoneLoginController: UIViewController {
 
     //MARK: OUTLETS
@@ -26,7 +27,7 @@ class PhoneLoginController: UIViewController {
         verifyButtonOutlet.isHidden = true
         resendFlag = false
         if #available(iOS 11.0, *) {
-            PhoneNumberKit.CountryCodePicker.commonCountryCodes = ["IN","US", "CA","NP","AE"]
+            PhoneNumberKit.CountryCodePicker.commonCountryCodes = ["IN","US","CA","NP","AE"]
             self.phoneNumberField.withDefaultPickerUI = true
         }
         self.phoneNumberField.withExamplePlaceholder = true
@@ -92,7 +93,6 @@ class PhoneLoginController: UIViewController {
                 self.alertPrompt(message: error.localizedDescription, title: "Oops!", prompt: "OK")
                 return
             }
-            print("Signed In with Phone!")
             self.dismiss(animated: true)
         })
     }
