@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		8CC92680262A1370001B454A /* PhoneLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9267F262A1370001B454A /* PhoneLoginController.swift */; };
 		8CC926B1262B5066001B454A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC926B0262B5065001B454A /* ProfileViewController.swift */; };
 		8CCB1F7426314C2F008BBA12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CCB1F7326314C2F008BBA12 /* GoogleService-Info.plist */; };
+		8CCB1FCA26334E1E008BBA12 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CCB1FC926334E1E008BBA12 /* PhoneNumberKit */; };
+		8CCB1FCF26334E7C008BBA12 /* customPhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCB1FCE26334E7C008BBA12 /* customPhoneTextField.swift */; };
 		8CFEE616262E884B000A8926 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEE615262E884B000A8926 /* NavViewController.swift */; };
 		C018481351A080B4DB814B8E /* Pods_MagixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18058F9C00E89C8D4175874A /* Pods_MagixTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,7 @@
 		8CC9267F262A1370001B454A /* PhoneLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginController.swift; sourceTree = "<group>"; };
 		8CC926B0262B5065001B454A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8CCB1F7326314C2F008BBA12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CCB1FCE26334E7C008BBA12 /* customPhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customPhoneTextField.swift; sourceTree = "<group>"; };
 		8CFEE615262E884B000A8926 /* NavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		AB2210869A3F079FB6049169 /* Pods-MagixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagixTests.debug.xcconfig"; path = "Target Support Files/Pods-MagixTests/Pods-MagixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70E3D98583FD41AAC3A1605 /* Pods_Magix_MagixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magix_MagixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DD16E6972EA80AD42FB8AB9 /* Pods_Magix.framework in Frameworks */,
+				8CCB1FCA26334E1E008BBA12 /* PhoneNumberKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +144,7 @@
 				8CC9267F262A1370001B454A /* PhoneLoginController.swift */,
 				8CC926B0262B5065001B454A /* ProfileViewController.swift */,
 				8CFEE615262E884B000A8926 /* NavViewController.swift */,
+				8CCB1FCE26334E7C008BBA12 /* customPhoneTextField.swift */,
 			);
 			path = Magix;
 			sourceTree = "<group>";
@@ -204,6 +209,9 @@
 			dependencies = (
 			);
 			name = Magix;
+			packageProductDependencies = (
+				8CCB1FC926334E1E008BBA12 /* PhoneNumberKit */,
+			);
 			productName = Magix;
 			productReference = 8C05AF0126289D56008963C2 /* Magix.app */;
 			productType = "com.apple.product-type.application";
@@ -279,6 +287,9 @@
 				Base,
 			);
 			mainGroup = 8C05AEF826289D56008963C2;
+			packageReferences = (
+				8CCB1FC826334E1E008BBA12 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+			);
 			productRefGroup = 8C05AF0226289D56008963C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -461,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CCB1FCF26334E7C008BBA12 /* customPhoneTextField.swift in Sources */,
 				8CC926B1262B5066001B454A /* ProfileViewController.swift in Sources */,
 				8C05AF0926289D56008963C2 /* ViewController.swift in Sources */,
 				8C05AF0526289D56008963C2 /* AppDelegate.swift in Sources */,
@@ -811,6 +823,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8CCB1FC826334E1E008BBA12 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8CCB1FC926334E1E008BBA12 /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CCB1FC826334E1E008BBA12 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8C05AEF926289D56008963C2 /* Project object */;
 }
