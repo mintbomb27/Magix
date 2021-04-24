@@ -1,4 +1,5 @@
-# <p align = "center"><img height="30%" src="https://github.com/alokme123/Magix/raw/main/Documentation/MagixLogo.png"></p>
+
+<p align = "center"><img width="40%" src="https://github.com/alokme123/Magix/raw/main/Documentation/MagixLogo.png"></p>
 <p align="center"><strong>A Firebase Auth boilerplate in a Netflix-themed UI</strong></p>
 
 ### What does it do?
@@ -22,8 +23,10 @@ Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores n
 * [OTPFieldView](https://github.com/AjazDev/OTPFieldView)
 
 
-### Screenshot
+### Screenshots
 <p float="left">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen1.png" width="30%">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen2.png" width="30%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen1.png" width="25%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen3.png" width="25%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen4.png" width="25%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen2.png" width="25%">
 </p>
