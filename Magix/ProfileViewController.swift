@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //Populate Fields if User Exists
+        //Populate Fields if User Exist
         Auth.auth().addStateDidChangeListener{ [self] (auth,user) in
             if(user != nil){
                 guard let uid = user?.uid else {return}
