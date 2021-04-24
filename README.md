@@ -25,8 +25,8 @@ Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores n
 
 ### Screenshots
 <p float="left">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen1.png" width="25%">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen3.png" width="25%">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen4.png" width="25%">
-  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen2.png" width="25%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen1.png" width="20%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen3.png" width="20%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen4.png" width="20%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen2.png" width="20%">
 </p>
