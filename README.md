@@ -1,5 +1,5 @@
-# Magix
-A Firebase Auth boilerplate in a Netflix-themed UI
+# <p align = "center"><img src="https://github.com/alokme123/Magix/raw/main/Documentation/MagixLogo.png"></p>
+<p align="center">A Firebase Auth boilerplate in a Netflix-themed UI</p>
 
 ### What does it do?
 Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores name and phone in Firebase DB for Email SignIn.
@@ -24,6 +24,6 @@ Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores n
 
 ### Screenshot
 <p float="left">
-  <img src="https://github.com/alokme123/Magix/raw/main/assets/screen1.png" width="30%">
-  <img src="https://github.com/alokme123/Magix/raw/main/assets/screen2.png" width="30%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen1.png" width="30%">
+  <img src="https://github.com/alokme123/Magix/raw/main/Documentation/screen2.png" width="30%">
 </p>
