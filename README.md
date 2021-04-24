@@ -1,5 +1,5 @@
-# <p align = "center"><img src="https://github.com/alokme123/Magix/raw/main/Documentation/MagixLogo.png"></p>
-<p align="center">A Firebase Auth boilerplate in a Netflix-themed UI</p>
+# <p align = "center"><img height="30%" src="https://github.com/alokme123/Magix/raw/main/Documentation/MagixLogo.png"></p>
+<p align="center"><strong>A Firebase Auth boilerplate in a Netflix-themed UI</strong></p>
 
 ### What does it do?
 Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores name and phone in Firebase DB for Email SignIn.
