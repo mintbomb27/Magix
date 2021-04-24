@@ -17,9 +17,9 @@ Performs Google, Apple, Email, and OTP Sign in through FirebaseAuth and stores n
 
 * XCode 12.0
 * Swift 5.3
-* Firebase[https://firebase.google.com]
-* PhoneNumberKit[https://github.com/marmelroy/PhoneNumberKit]
-* OTPFieldView[https://github.com/AjazDev/OTPFieldView]
+* [Firebase](https://firebase.google.com)
+* [PhoneNumberKit](https://github.com/marmelroy/PhoneNumberKit)
+* [OTPFieldView](https://github.com/AjazDev/OTPFieldView)
 
 
 ### Screenshot
